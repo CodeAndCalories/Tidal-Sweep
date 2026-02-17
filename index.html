@@ -707,60 +707,53 @@ function createFishSVG() {
 }
 
 function createSharkSVG() {
-  const size = 80 + Math.random() * 60;  // Slightly larger range for variety: 80–140 px height
-  const w = size * 2.4;                  // Wider aspect for classic side profile
+  const size = 70 + Math.random() * 50;  // 70-120px height for variety
+  const w = size * 2.8;                  // Matches wide profile
   const h = size;
 
-  const svg = `<svg width="${w}" height="${h}" viewBox="0 0 288 120" xmlns="http://www.w3.org/2000/svg">
-    <g transform="translate(0,10) scale(1.1)">
-      <!-- Body base: torpedo shape, dark slate gray top -->
-      <path d="M20 60 Q80 20 180 50 Q260 70 268 60 Q260 100 180 90 Q80 110 20 80 Z" fill="#2c3e50" stroke="#1a252f" stroke-width="2"/>
-
+  const svg = `<svg width="${w}" height="${h}" viewBox="0 0 512 200" xmlns="http://www.w3.org/2000/svg">
+    <g>
+      <!-- Main body (dark navy blue) -->
+      <path d="M50 100 Q120 60 200 70 Q280 80 350 100 Q420 120 460 110 Q480 105 490 100" fill="#1e3a5f" stroke="#0f172a" stroke-width="3" stroke-linejoin="round"/>
+      
       <!-- White underbelly with sharp demarcation -->
-      <path d="M20 80 Q80 110 180 90 Q260 100 268 60 L268 120 L20 120 Z" fill="#f0f8ff" opacity="0.95"/>
-
+      <path d="M50 130 Q120 160 200 140 Q280 150 350 130 Q420 135 460 130 L490 125 L490 170 L50 170 Z" fill="#ffffff" stroke="#e2e8f0" stroke-width="2"/>
+      
       <!-- Snout shading for pointed look -->
-      <ellipse cx="40" cy="60" rx="25" ry="18" fill="#34495e" opacity="0.8"/>
-
+      <ellipse cx="80" cy="95" rx="30" ry="20" fill="#0f172a" opacity="0.6"/>
+      
       <!-- Dorsal fin (tall, triangular, classic great white shape) -->
-      <path d="M120 30 L140 0 L160 30 L150 50 Z" fill="#2c3e50" stroke="#1a252f" stroke-width="1.5"/>
-
+      <path d="M200 50 L230 10 L260 50 L245 80 Z" fill="#1e3a5f" stroke="#0f172a" stroke-width="2"/>
+      
       <!-- Pectoral fins (wide, triangular, angled back) -->
-      <path d="M100 70 L70 100 L90 80 Z" fill="#2c3e50" opacity="0.9"/>
-      <path d="M180 70 L210 100 L190 80 Z" fill="#2c3e50" opacity="0.85"/>
-
-      <!-- Gill slits (5 parallel vertical lines, slanted slightly) -->
-      <g stroke="#1a252f" stroke-width="2" opacity="0.7">
-        <line x1="80" y1="55" x2="80" y2="75"/>
-        <line x1="85" y1="54" x2="85" y2="76"/>
-        <line x1="90" y1="53" x2="90" y2="77"/>
-        <line x1="95" y1="52" x2="95" y2="78"/>
-        <line x1="100" y1="51" x2="100" y2="79"/>
+      <path d="M150 120 L100 160 L140 150 Z" fill="#1e3a5f" stroke="#0f172a" stroke-width="2"/>
+      <path d="M320 120 L370 160 L340 140 Z" fill="#1e3a5f" stroke="#0f172a" stroke-width="2"/>
+      
+      <!-- Eye: small black with white highlight -->
+      <circle cx="110" cy="80" r="8" fill="#0f172a" stroke="#1e3a5f" stroke-width="1.5"/>
+      <circle cx="115" cy="77" r="3" fill="#ffffff" opacity="0.8"/>
+      
+      <!-- Open mouth (dark interior) -->
+      <path d="M70 105 Q110 130 140 115 Q120 135 80 140 Z" fill="#0f0f0f" stroke="#000" stroke-width="2"/>
+      
+      <!-- Upper teeth (sharp white triangles) -->
+      <g fill="#ffffff" stroke="#e2e8f0" stroke-width="0.5">
+        <polygon points="80,110 85,102 90,110"/>
+        <polygon points="92,112 97,104 102,112"/>
+        <polygon points="104,114 109,106 114,114"/>
+        <polygon points="116,116 121,108 126,116"/>
       </g>
-
-      <!-- Eye: small, black, high on head, realistic placement -->
-      <circle cx="55" cy="50" r="5" fill="#0a0a0a"/>
-      <circle cx="57" cy="49" r="2" fill="#ffffff" opacity="0.4"/> <!-- tiny highlight -->
-
-      <!-- Open mouth with serrated teeth (classic jagged triangle rows) -->
-      <path d="M30 65 Q50 80 70 70 Q60 85 40 90 Z" fill="#111" stroke="#000" stroke-width="1.5"/>
-      <!-- Upper teeth -->
-      <g fill="#ddd" stroke="#aaa" stroke-width="0.5">
-        <polygon points="35,68 38,62 41,68"/>
-        <polygon points="42,70 45,64 48,70"/>
-        <polygon points="49,72 52,66 55,72"/>
-        <polygon points="56,74 59,68 62,74"/>
+      
+      <!-- Lower teeth (offset jagged) -->
+      <g fill="#ffffff" stroke="#e2e8f0" stroke-width="0.5">
+        <polygon points="85,128 90,136 95,128"/>
+        <polygon points="97,130 102,138 107,130"/>
+        <polygon points="109,132 114,140 119,132"/>
       </g>
-      <!-- Lower teeth (offset) -->
-      <g fill="#ddd" stroke="#aaa" stroke-width="0.5">
-        <polygon points="38,82 41,88 44,82"/>
-        <polygon points="45,84 48,90 51,84"/>
-        <polygon points="52,86 55,92 58,86"/>
-      </g>
-
-      <!-- Tail fin (heterocercal: upper lobe longer) -->
-      <path d="M260 60 L288 40 L280 80 L260 100 Z" fill="#2c3e50" stroke="#1a252f" stroke-width="2"/>
-      <path d="M260 80 L288 100 L280 60 L260 60 Z" fill="#34495e" opacity="0.8"/>
+      
+      <!-- Tail fin (forked, classic shark caudal) -->
+      <path d="M460 100 L500 70 L485 120 L500 130 L460 150 Z" fill="#1e3a5f" stroke="#0f172a" stroke-width="3"/>
+      <path d="M485 120 Q495 105 485 90" fill="#334155" opacity="0.7"/>
     </g>
   </svg>`;
 
