@@ -742,42 +742,43 @@ function createSharkSVG() {
 }
  
 function createTentacleSVG() {
-  const w = 80 + Math.random() * 40;  // 80-120px width for thicker base
-  const h = 450 + Math.random() * 50; // Taller for dramatic Abyss spawn
-  const pinkHue = 330 + Math.random() * 20;  // Vibrant pink-magenta range
-  const tentacleColor = `hsl(${pinkHue}, 70%, 45%)`;  // Bright pink like image
-  const highlightColor = `hsl(${pinkHue}, 80%, 60%)`; // Lighter for shine
-  const suckerColor = `hsl(${pinkHue}, 60%, 35%)`;    // Darker pink suckers
-  const suckerInner = `hsl(${pinkHue}, 50%, 50%)`;    // Inner rim
+  const w = 80 + Math.random() * 40;          // 80–120px width (thicker base)
+  const h = 450 + Math.random() * 50;         // 450–500px tall for dramatic reach
+  const pinkHue = 330 + Math.random() * 20;   // 330–350 → vivid pink-magenta
+  const tentacleColor = `hsl(${pinkHue}, 70%, 45%)`;
+  const highlightColor = `hsl(${pinkHue}, 80%, 60%)`;  // Shine
+  const suckerColor = `hsl(${pinkHue}, 60%, 35%)`;     // Darker suckers
+  const suckerInner = `hsl(${pinkHue}, 50%, 50%)`;     // Inner rim
 
-  // Generate organic wavy path: starts thick at base, tapers to curl tip
+  // Path: starts at bottom (abyss floor), waves & curls upward
   const midX = w / 2;
-  let d = `M${midX} ${h}`;  // Bottom anchor (spawns from abyss floor)
-  const segments = 16;      // More segments for smoother curls
+  let d = `M${midX} ${h}`;
+  const segments = 16;
   let currentX = midX;
   let currentY = h;
-  const amp = 25 + Math.random() * 15;  // Wave amplitude
-  const freq = 0.4 + Math.random() * 0.3;  // Curl frequency
+  const amp = 25 + Math.random() * 15;        // Wave strength
+  const freq = 0.4 + Math.random() * 0.3;     // Curl tightness
 
   for (let i = 0; i < segments; i++) {
     const progress = i / segments;
-    const y = h - (h * progress * 1.1);  // Slight over-extension for taper
-    const wave = Math.sin(i * freq * Math.PI) * amp * (1 - progress * 0.6);  // Damping toward tip
+    const y = h - (h * progress * 1.1);       // Slight overshoot for taper
+    const wave = Math.sin(i * freq * Math.PI) * amp * (1 - progress * 0.6); // Dampen toward tip
     const cpX = currentX + wave * 1.8;
     const cpY = (currentY + y) / 2;
     d += ` Q${cpX} ${cpY} ${currentX + wave} ${y}`;
     currentX += wave;
     currentY = y;
   }
-  d += ` Q${currentX - 8} ${currentY - 15} ${currentX - 5} ${currentY - 25}`;  // Pointed curl tip
+  // Nice pointed/curled tip
+  d += ` Q${currentX - 8} ${currentY - 15} ${currentX - 5} ${currentY - 25}`;
 
-  // Build suckers: positioned along right side (one direction for style), sized by progress
+  // Suckers: along one side, following the curve
   let suckers = '';
-  for (let i = 2; i < segments - 2; i += 1.5) {  // Every ~1.5 segments, avoid base/tip
+  for (let i = 2; i < segments - 2; i += 1.5) {
     const progress = i / segments;
     const suckerY = h - (h * progress);
-    const suckerX = midX + Math.sin(i * freq * Math.PI) * amp * 0.7 + 12;  // Offset right + wave follow
-    const r = 6 + progress * 3;  // Smaller toward tip
+    const suckerX = midX + Math.sin(i * freq * Math.PI) * amp * 0.7 + 12; // Offset right
+    const r = 6 + progress * 3;  // Grow slightly toward base
     suckers += `
       <g transform="translate(${suckerX}, ${suckerY})">
         <circle cx="0" cy="0" r="${r}" fill="${suckerColor}" stroke="${highlightColor}" stroke-width="1.2"/>
@@ -792,15 +793,17 @@ function createTentacleSVG() {
         <stop offset="50%" stop-color="${tentacleColor}" stop-opacity="1"/>
         <stop offset="100%" stop-color="${tentacleColor}" stop-opacity="0.7"/>
       </linearGradient>
+      <!-- Optional glow filter (add if you want stronger effect) -->
+      <filter id="glow"><feGaussianBlur stdDeviation="3" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
     </defs>
-    <!-- Tentacle body: gradient for shine, thick stroke for outline -->
+    <!-- Main tentacle body -->
     <path d="${d}" fill="url(#tentacleGrad)" stroke="${tentacleColor}" stroke-width="6" 
           stroke-linejoin="round" stroke-linecap="round" opacity="0.95"/>
-    <!-- Thinner inner stroke for depth -->
-    <path d="${d}" fill="none" stroke="${suckerColor}" stroke-width="2.5" stroke-linejoin="round" opacity="0.6"/>
+    <!-- Inner depth line -->
+    <path d="${d}" fill="none" stroke="${suckerColor}" stroke-width="2.5" opacity="0.6"/>
     <!-- Suckers -->
     ${suckers}
-    <!-- Subtle glow for Abyss menace -->
+    <!-- Subtle outer glow -->
     <path d="${d}" fill="none" stroke="${highlightColor}" stroke-width="12" stroke-opacity="0.3" filter="url(#glow)"/>
   </svg>`;
 
