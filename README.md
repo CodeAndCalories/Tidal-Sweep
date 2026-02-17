@@ -32,11 +32,6 @@ Play locally
 Open index.html in any modern browser.
 Host on GitHub Pages
 
-Create a new repository on GitHub
-Upload index.html to the root of the repo
-Go to Settings → Pages → Source and select your main branch
-Your game will be live at https://yourusername.github.io/repo-name/
-
 🛠️ Tech Stack
 
 HTML5 / CSS3 / Vanilla JavaScript — zero dependencies
