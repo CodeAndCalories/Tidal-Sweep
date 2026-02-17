@@ -39,4 +39,4 @@ Inline SVG — all creatures (fish, sharks, tentacles) are procedurally generate
 CSS Custom Properties — theme switching with smooth transitions
 CSS Animations — waves, bubbles, creature movement, and UI effects
 
-https://codeandcalories.github.io/repo-name/
+https://codeandcalories.github.io/tidal-sweep
