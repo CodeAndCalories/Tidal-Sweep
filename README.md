@@ -6,7 +6,7 @@ Tidal Sweep is an ocean-themed tile-sweeping puzzle game inspired by classic gri
 
 ## 🎮 Play Now
 
-**[Play Tidal Sweep](https://codeandcalories.github.io/Tidal-Sweep/)**
+https://codeandcalories.github.io/Tidal-Sweep/
 
 ## ✨ Features
 
