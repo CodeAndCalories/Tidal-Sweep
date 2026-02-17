@@ -38,3 +38,5 @@ HTML5 / CSS3 / Vanilla JavaScript — zero dependencies
 Inline SVG — all creatures (fish, sharks, tentacles) are procedurally generated with randomized colors, sizes, and animations
 CSS Custom Properties — theme switching with smooth transitions
 CSS Animations — waves, bubbles, creature movement, and UI effects
+
+https://codeandcalories.github.io/repo-name/
