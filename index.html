@@ -13,7 +13,6 @@
     --transition-speed: 0.6s;
   }
 
-  /* ===== SHALLOWS ===== */
   body.theme-easy {
     --bg: #1a3a4a;
     --surface: #1e4252;
@@ -40,7 +39,6 @@
     --wave3: rgba(100, 200, 210, 0.05);
   }
 
-  /* ===== DEEP SEA ===== */
   body.theme-medium {
     --bg: #061a2e;
     --surface: #0a2440;
@@ -67,7 +65,6 @@
     --wave3: rgba(40, 120, 200, 0.03);
   }
 
-  /* ===== THE ABYSS ===== */
   body.theme-hard {
     --bg: #020810;
     --surface: #040e1a;
@@ -106,28 +103,15 @@
     overflow: hidden;
     position: relative;
     background: var(--bg);
-    transition:
-      background var(--transition-speed) ease,
-      color var(--transition-speed) ease;
+    transition: background var(--transition-speed) ease, color var(--transition-speed) ease;
   }
 
-  /* === WAVES === */
   .waves {
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 1;
-    overflow: hidden;
+    position: fixed; inset: 0; pointer-events: none; z-index: 1; overflow: hidden;
   }
-
   .wave {
-    position: absolute;
-    width: 300%;
-    height: 100%;
-    top: 0;
-    left: -100%;
+    position: absolute; width: 300%; height: 100%; top: 0; left: -100%;
   }
-
   .wave-1 {
     background: repeating-linear-gradient(90deg, transparent 0%, var(--wave1) 12%, transparent 24%);
     animation: waveDrift1 18s ease-in-out infinite;
@@ -140,445 +124,181 @@
     background: repeating-linear-gradient(92deg, transparent 0%, var(--wave3) 10%, transparent 20%);
     animation: waveDrift3 14s ease-in-out infinite;
   }
+  @keyframes waveDrift1 { 0%,100%{transform:translateX(0) translateY(0)} 50%{transform:translateX(15%) translateY(8px)} }
+  @keyframes waveDrift2 { 0%,100%{transform:translateX(0) translateY(0)} 50%{transform:translateX(-10%) translateY(-6px)} }
+  @keyframes waveDrift3 { 0%,100%{transform:translateX(0) translateY(0)} 50%{transform:translateX(8%) translateY(5px)} }
 
-  @keyframes waveDrift1 {
-    0%, 100% { transform: translateX(0%) translateY(0); }
-    50% { transform: translateX(15%) translateY(8px); }
-  }
-  @keyframes waveDrift2 {
-    0%, 100% { transform: translateX(0%) translateY(0); }
-    50% { transform: translateX(-10%) translateY(-6px); }
-  }
-  @keyframes waveDrift3 {
-    0%, 100% { transform: translateX(0%) translateY(0); }
-    50% { transform: translateX(8%) translateY(5px); }
-  }
-
-  /* === BUBBLES === */
   .bubbles {
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 2;
-    overflow: hidden;
+    position: fixed; inset: 0; pointer-events: none; z-index: 2; overflow: hidden;
   }
-
   .bubble {
-    position: absolute;
-    bottom: -20px;
-    border-radius: 50%;
+    position: absolute; bottom: -20px; border-radius: 50%;
     background: radial-gradient(circle at 30% 30%, var(--bubble-color), transparent);
     border: 1px solid var(--bubble-border);
     animation: bubbleRise linear infinite;
     transition: background var(--transition-speed) ease, border-color var(--transition-speed) ease;
   }
-
   @keyframes bubbleRise {
-    0% { transform: translateY(0) translateX(0) scale(1); opacity: 0; }
-    10% { opacity: 1; }
-    90% { opacity: 0.6; }
-    100% { transform: translateY(-110vh) translateX(40px) scale(0.6); opacity: 0; }
+    0%{transform:translateY(0) translateX(0) scale(1);opacity:0}
+    10%{opacity:1} 90%{opacity:0.6}
+    100%{transform:translateY(-110vh) translateX(40px) scale(0.6);opacity:0}
   }
 
-  /* === CREATURES === */
   .creatures {
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 3;
-    overflow: hidden;
+    position: fixed; inset: 0; pointer-events: none; z-index: 3; overflow: hidden;
   }
-
   .creature {
-    position: absolute;
-    opacity: 0;
-    will-change: transform;
+    position: absolute; opacity: 0; will-change: transform;
   }
+  .fish { filter: drop-shadow(0 2px 8px rgba(0,0,0,0.2)); }
+  .shark { filter: drop-shadow(0 4px 16px rgba(0,0,0,0.4)); }
+  .angler { filter: drop-shadow(0 0 20px rgba(80,160,255,0.3)); }
+  .viper { filter: drop-shadow(0 0 15px rgba(100,180,255,0.2)); }
 
-  /* Fish (Shallows) */
-  .fish {
-    font-size: 0;
-    filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.2));
-  }
-
-  .fish-body {
-    position: relative;
-    display: inline-block;
-  }
-
-  .fish-body svg {
-    display: block;
-  }
-
-  /* Shark (Deep Sea) */
-  .shark {
-    font-size: 0;
-    filter: drop-shadow(0 4px 16px rgba(0, 0, 0, 0.4));
-  }
-
-  /* Kraken tentacle (Abyss) */
-  .tentacle {
-    filter: drop-shadow(0 0 20px rgba(120, 0, 60, 0.3));
-  }
-
-  /* Swim animations */
   @keyframes swimRight {
-    0% { transform: translateX(-150px) translateY(0px); opacity: 0; }
-    5% { opacity: 1; }
-    50% { transform: translateX(50vw) translateY(-20px); opacity: 1; }
-    95% { opacity: 1; }
-    100% { transform: translateX(calc(100vw + 150px)) translateY(10px); opacity: 0; }
+    0%{transform:translateX(-200px) translateY(0);opacity:0}
+    5%{opacity:1} 50%{transform:translateX(50vw) translateY(-20px);opacity:1}
+    95%{opacity:1} 100%{transform:translateX(calc(100vw + 200px)) translateY(10px);opacity:0}
   }
-
   @keyframes swimLeft {
-    0% { transform: translateX(calc(100vw + 150px)) translateY(0px); opacity: 0; }
-    5% { opacity: 1; }
-    50% { transform: translateX(50vw) translateY(15px); opacity: 1; }
-    95% { opacity: 1; }
-    100% { transform: translateX(-150px) translateY(-10px); opacity: 0; }
+    0%{transform:translateX(calc(100vw + 200px)) translateY(0);opacity:0}
+    5%{opacity:1} 50%{transform:translateX(50vw) translateY(15px);opacity:1}
+    95%{opacity:1} 100%{transform:translateX(-200px) translateY(-10px);opacity:0}
   }
-
-  @keyframes tentacleRise {
-    0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
-    10% { opacity: 0.6; }
-    40% { transform: translateY(20vh) rotate(-8deg); opacity: 0.7; }
-    60% { transform: translateY(15vh) rotate(5deg); opacity: 0.6; }
-    90% { opacity: 0.3; }
-    100% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+  @keyframes swimRightSlow {
+    0%{transform:translateX(-250px) translateY(0);opacity:0}
+    4%{opacity:0.85} 50%{transform:translateX(45vw) translateY(-15px);opacity:0.85}
+    96%{opacity:0.85} 100%{transform:translateX(calc(100vw + 250px)) translateY(8px);opacity:0}
   }
-
-  @keyframes fishWiggle {
-    0%, 100% { transform: rotate(0deg); }
-    25% { transform: rotate(2deg); }
-    75% { transform: rotate(-2deg); }
-  }
-
-  @keyframes tailSwish {
-    0%, 100% { transform: scaleX(1); }
-    50% { transform: scaleX(0.85); }
+  @keyframes swimLeftSlow {
+    0%{transform:translateX(calc(100vw + 250px)) translateY(0);opacity:0}
+    4%{opacity:0.85} 50%{transform:translateX(45vw) translateY(12px);opacity:0.85}
+    96%{opacity:0.85} 100%{transform:translateX(-250px) translateY(-8px);opacity:0}
   }
 
   .game-container {
-    position: relative;
-    z-index: 10;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 24px;
-    box-shadow:
-      0 0 60px var(--shadow-glow),
-      inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    position: relative; z-index: 10;
+    background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 24px;
+    box-shadow: 0 0 60px var(--shadow-glow), inset 0 1px 0 rgba(255,255,255,0.04);
     max-width: 95vw;
-    transition:
-      background var(--transition-speed) ease,
-      border-color var(--transition-speed) ease,
-      box-shadow var(--transition-speed) ease;
+    transition: background var(--transition-speed) ease, border-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
   }
-
   .header { text-align: center; margin-bottom: 20px; }
-
   .title {
-    font-family: 'Lilita One', cursive;
-    font-size: 34px;
+    font-family: 'Lilita One', cursive; font-size: 34px;
     background: linear-gradient(135deg, var(--title-from), var(--title-to), var(--title-from));
     background-size: 200% auto;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    animation: shimmer 4s ease-in-out infinite;
-    letter-spacing: 3px;
-    margin-bottom: 2px;
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    animation: shimmer 4s ease-in-out infinite; letter-spacing: 3px; margin-bottom: 2px;
   }
-
-  @keyframes shimmer {
-    0%, 100% { background-position: 0% center; }
-    50% { background-position: 200% center; }
-  }
-
+  @keyframes shimmer { 0%,100%{background-position:0% center} 50%{background-position:200% center} }
   .subtitle {
-    font-size: 11px;
-    color: var(--footer-color);
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    font-weight: 500;
-    transition: color var(--transition-speed) ease;
+    font-size: 11px; color: var(--footer-color); letter-spacing: 4px;
+    text-transform: uppercase; font-weight: 500; transition: color var(--transition-speed) ease;
   }
-
-  .difficulty-bar {
-    display: flex;
-    gap: 8px;
-    justify-content: center;
-    margin-bottom: 16px;
-  }
-
+  .difficulty-bar { display: flex; gap: 8px; justify-content: center; margin-bottom: 16px; }
   .diff-btn {
-    background: var(--cell-bg);
-    border: 1px solid var(--border);
-    color: var(--text);
-    font-family: 'Fredoka', sans-serif;
-    font-size: 12px;
-    font-weight: 600;
-    padding: 8px 18px;
-    border-radius: 20px;
-    cursor: pointer;
-    transition: all 0.25s;
-    letter-spacing: 1px;
+    background: var(--cell-bg); border: 1px solid var(--border); color: var(--text);
+    font-family: 'Fredoka', sans-serif; font-size: 12px; font-weight: 600;
+    padding: 8px 18px; border-radius: 20px; cursor: pointer; transition: all 0.25s; letter-spacing: 1px;
   }
-
   .diff-btn:hover { border-color: var(--accent-dim); }
-
   .diff-btn.active {
-    border-color: var(--accent);
-    color: var(--accent);
-    background: rgba(0, 200, 180, 0.08);
-    box-shadow: 0 0 16px rgba(0, 200, 180, 0.12);
+    border-color: var(--accent); color: var(--accent);
+    background: rgba(0,200,180,0.08); box-shadow: 0 0 16px rgba(0,200,180,0.12);
   }
-
   .diff-label { font-size: 13px; }
   .diff-info { font-size: 9px; opacity: 0.5; display: block; margin-top: 2px; }
-
   .status-bar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 12px;
-    padding: 10px 16px;
-    background: var(--sand-bar);
-    border-radius: 12px;
-    border: 1px solid var(--border);
+    display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;
+    padding: 10px 16px; background: var(--sand-bar); border-radius: 12px; border: 1px solid var(--border);
     transition: background var(--transition-speed) ease, border-color var(--transition-speed) ease;
   }
-
-  .stat {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 15px;
-    font-weight: 700;
-  }
-
+  .stat { display: flex; align-items: center; gap: 6px; font-size: 15px; font-weight: 700; }
   .stat-icon { font-size: 18px; }
   .jelly-count { color: var(--danger); transition: color var(--transition-speed) ease; }
   .timer-count { color: var(--warn); transition: color var(--transition-speed) ease; }
-
   .reset-btn {
-    background: rgba(0, 200, 180, 0.08);
-    border: 1px solid var(--border);
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    font-size: 20px;
-    cursor: pointer;
-    transition: all 0.25s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    background: rgba(0,200,180,0.08); border: 1px solid var(--border); border-radius: 50%;
+    width: 40px; height: 40px; font-size: 20px; cursor: pointer; transition: all 0.25s;
+    display: flex; align-items: center; justify-content: center;
   }
-
-  .reset-btn:hover {
-    border-color: var(--accent);
-    box-shadow: 0 0 14px rgba(0, 200, 180, 0.2);
-    transform: rotate(180deg);
-  }
-
+  .reset-btn:hover { border-color: var(--accent); box-shadow: 0 0 14px rgba(0,200,180,0.2); transform: rotate(180deg); }
   .grid-wrapper { display: flex; justify-content: center; }
-
   .grid {
-    display: inline-grid;
-    gap: 2px;
-    background: var(--sand-bar);
-    padding: 6px;
-    border-radius: 12px;
-    border: 1px solid var(--border);
+    display: inline-grid; gap: 2px; background: var(--sand-bar); padding: 6px;
+    border-radius: 12px; border: 1px solid var(--border);
     transition: background var(--transition-speed) ease, border-color var(--transition-speed) ease;
   }
-
   .cell {
-    width: var(--cell-size);
-    height: var(--cell-size);
-    background: var(--cell-bg);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: 700;
-    font-family: 'Fredoka', sans-serif;
+    width: var(--cell-size); height: var(--cell-size); background: var(--cell-bg);
+    border: 1px solid var(--border); border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; font-size: 14px; font-weight: 700; font-family: 'Fredoka', sans-serif;
     transition: background 0.15s ease, border-color 0.15s ease;
-    user-select: none;
-    -webkit-user-select: none;
-    position: relative;
+    user-select: none; -webkit-user-select: none; position: relative;
   }
-
   .cell:hover:not(.revealed):not(.game-over-cell) {
-    background: var(--cell-hover);
-    border-color: rgba(0, 200, 180, 0.3);
-    box-shadow: 0 0 8px rgba(0, 200, 180, 0.08);
+    background: var(--cell-hover); border-color: rgba(0,200,180,0.3); box-shadow: 0 0 8px rgba(0,200,180,0.08);
   }
-
-  .cell.revealed {
-    background: var(--cell-revealed);
-    border-color: rgba(255, 255, 255, 0.03);
-    cursor: default;
-  }
-
+  .cell.revealed { background: var(--cell-revealed); border-color: rgba(255,255,255,0.03); cursor: default; }
   .cell.revealed.empty { background: var(--cell-revealed); }
+  .cell.flagged::after { content: '🚩'; font-size: 16px; animation: flagDrop 0.25s ease-out; }
+  @keyframes flagDrop { 0%{transform:translateY(-8px);opacity:0} 100%{transform:translateY(0);opacity:1} }
+  .cell.jelly-hit { background: rgba(232,68,136,0.25)!important; border-color: var(--danger)!important; animation: jellyZap 0.4s ease-out; }
+  @keyframes jellyZap { 0%{transform:scale(1)} 25%{transform:scale(1.15)} 50%{transform:scale(0.95)} 100%{transform:scale(1)} }
+  .cell.jelly-shown { background: rgba(232,68,136,0.08); }
+  .cell .jelly-icon { font-size: 17px; filter: drop-shadow(0 0 4px rgba(232,68,136,0.4)); }
 
-  .cell.flagged::after {
-    content: '🚩';
-    font-size: 16px;
-    animation: flagDrop 0.25s ease-out;
-  }
+  body.theme-easy .cell.n1{color:#38a8cc} body.theme-easy .cell.n2{color:#20b890}
+  body.theme-easy .cell.n3{color:#d05070} body.theme-easy .cell.n4{color:#8860cc}
+  body.theme-easy .cell.n5{color:#cc7030} body.theme-easy .cell.n6{color:#30b890}
+  body.theme-easy .cell.n7{color:#a070cc} body.theme-easy .cell.n8{color:#6890a0}
+  body.theme-medium .cell.n1{color:#44bbff} body.theme-medium .cell.n2{color:#00e4c8}
+  body.theme-medium .cell.n3{color:#e84488} body.theme-medium .cell.n4{color:#9966ee}
+  body.theme-medium .cell.n5{color:#f07030} body.theme-medium .cell.n6{color:#44ddaa}
+  body.theme-medium .cell.n7{color:#cc88ff} body.theme-medium .cell.n8{color:#607890}
+  body.theme-hard .cell.n1{color:#2878b8} body.theme-hard .cell.n2{color:#009888}
+  body.theme-hard .cell.n3{color:#b03060} body.theme-hard .cell.n4{color:#6644aa}
+  body.theme-hard .cell.n5{color:#a05820} body.theme-hard .cell.n6{color:#208868}
+  body.theme-hard .cell.n7{color:#8860aa} body.theme-hard .cell.n8{color:#384858}
 
-  @keyframes flagDrop {
-    0% { transform: translateY(-8px); opacity: 0; }
-    100% { transform: translateY(0); opacity: 1; }
-  }
-
-  .cell.jelly-hit {
-    background: rgba(232, 68, 136, 0.25) !important;
-    border-color: var(--danger) !important;
-    animation: jellyZap 0.4s ease-out;
-  }
-
-  @keyframes jellyZap {
-    0% { transform: scale(1); }
-    25% { transform: scale(1.15); }
-    50% { transform: scale(0.95); }
-    100% { transform: scale(1); }
-  }
-
-  .cell.jelly-shown { background: rgba(232, 68, 136, 0.08); }
-
-  .cell .jelly-icon {
-    font-size: 17px;
-    filter: drop-shadow(0 0 4px rgba(232, 68, 136, 0.4));
-  }
-
-  /* Number colors per theme */
-  body.theme-easy .cell.n1 { color: #38a8cc; }
-  body.theme-easy .cell.n2 { color: #20b890; }
-  body.theme-easy .cell.n3 { color: #d05070; }
-  body.theme-easy .cell.n4 { color: #8860cc; }
-  body.theme-easy .cell.n5 { color: #cc7030; }
-  body.theme-easy .cell.n6 { color: #30b890; }
-  body.theme-easy .cell.n7 { color: #a070cc; }
-  body.theme-easy .cell.n8 { color: #6890a0; }
-
-  body.theme-medium .cell.n1 { color: #44bbff; }
-  body.theme-medium .cell.n2 { color: #00e4c8; }
-  body.theme-medium .cell.n3 { color: #e84488; }
-  body.theme-medium .cell.n4 { color: #9966ee; }
-  body.theme-medium .cell.n5 { color: #f07030; }
-  body.theme-medium .cell.n6 { color: #44ddaa; }
-  body.theme-medium .cell.n7 { color: #cc88ff; }
-  body.theme-medium .cell.n8 { color: #607890; }
-
-  body.theme-hard .cell.n1 { color: #2878b8; }
-  body.theme-hard .cell.n2 { color: #009888; }
-  body.theme-hard .cell.n3 { color: #b03060; }
-  body.theme-hard .cell.n4 { color: #6644aa; }
-  body.theme-hard .cell.n5 { color: #a05820; }
-  body.theme-hard .cell.n6 { color: #208868; }
-  body.theme-hard .cell.n7 { color: #8860aa; }
-  body.theme-hard .cell.n8 { color: #384858; }
-
-  /* OVERLAY */
   .overlay {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: var(--overlay-bg);
-    backdrop-filter: blur(6px);
-    z-index: 50;
-    align-items: center;
-    justify-content: center;
-    animation: fadeIn 0.3s ease;
-    transition: background var(--transition-speed) ease;
+    display: none; position: fixed; inset: 0; background: var(--overlay-bg);
+    backdrop-filter: blur(6px); z-index: 50; align-items: center; justify-content: center;
+    animation: fadeIn 0.3s ease; transition: background var(--transition-speed) ease;
   }
-
   .overlay.show { display: flex; }
-
-  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
+  @keyframes fadeIn { from{opacity:0} to{opacity:1} }
   .overlay-box {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    padding: 40px 52px;
-    text-align: center;
-    box-shadow: 0 0 80px var(--shadow-glow), 0 0 30px rgba(0, 0, 0, 0.5);
+    background: var(--surface); border: 1px solid var(--border); border-radius: 20px;
+    padding: 40px 52px; text-align: center;
+    box-shadow: 0 0 80px var(--shadow-glow), 0 0 30px rgba(0,0,0,0.5);
     animation: surfaceUp 0.4s ease;
     transition: background var(--transition-speed) ease, border-color var(--transition-speed) ease;
   }
-
-  @keyframes surfaceUp {
-    from { transform: translateY(30px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
-  }
-
+  @keyframes surfaceUp { from{transform:translateY(30px);opacity:0} to{transform:translateY(0);opacity:1} }
   .overlay-icon { font-size: 52px; margin-bottom: 12px; }
-
-  .overlay-title {
-    font-family: 'Lilita One', cursive;
-    font-size: 24px;
-    margin-bottom: 8px;
-    letter-spacing: 2px;
-  }
-
-  .overlay-title.win { color: var(--accent); text-shadow: 0 0 24px rgba(0, 200, 180, 0.35); }
-  .overlay-title.lose { color: var(--danger); text-shadow: 0 0 24px rgba(232, 68, 136, 0.35); }
-
-  .overlay-stats {
-    font-size: 13px;
-    color: var(--footer-color);
-    margin-bottom: 24px;
-    transition: color var(--transition-speed) ease;
-  }
-
+  .overlay-title { font-family: 'Lilita One', cursive; font-size: 24px; margin-bottom: 8px; letter-spacing: 2px; }
+  .overlay-title.win { color: var(--accent); text-shadow: 0 0 24px rgba(0,200,180,0.35); }
+  .overlay-title.lose { color: var(--danger); text-shadow: 0 0 24px rgba(232,68,136,0.35); }
+  .overlay-stats { font-size: 13px; color: var(--footer-color); margin-bottom: 24px; transition: color var(--transition-speed) ease; }
   .overlay-btn {
-    background: linear-gradient(135deg, var(--accent), var(--title-to));
-    color: #fff;
-    border: none;
-    font-family: 'Lilita One', cursive;
-    font-size: 15px;
-    padding: 12px 32px;
-    border-radius: 25px;
-    cursor: pointer;
-    transition: all 0.25s;
-    letter-spacing: 2px;
-    box-shadow: 0 4px 20px var(--shadow-glow);
-    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    background: linear-gradient(135deg, var(--accent), var(--title-to)); color: #fff; border: none;
+    font-family: 'Lilita One', cursive; font-size: 15px; padding: 12px 32px; border-radius: 25px;
+    cursor: pointer; transition: all 0.25s; letter-spacing: 2px;
+    box-shadow: 0 4px 20px var(--shadow-glow); text-shadow: 0 1px 2px rgba(0,0,0,0.3);
   }
-
-  .overlay-btn:hover {
-    box-shadow: 0 4px 30px var(--shadow-glow);
-    transform: translateY(-2px);
-  }
-
+  .overlay-btn:hover { box-shadow: 0 4px 30px var(--shadow-glow); transform: translateY(-2px); }
   .footer {
-    margin-top: 14px;
-    text-align: center;
-    font-size: 11px;
-    color: var(--footer-color);
-    letter-spacing: 1px;
-    transition: color var(--transition-speed) ease;
+    margin-top: 14px; text-align: center; font-size: 11px; color: var(--footer-color);
+    letter-spacing: 1px; transition: color var(--transition-speed) ease;
   }
-
   .footer span { color: var(--accent-dim); }
-
   .depth-label {
-    display: inline-block;
-    margin-top: 6px;
-    font-size: 9px;
-    color: var(--depth-color);
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    transition: color var(--transition-speed) ease;
+    display: inline-block; margin-top: 6px; font-size: 9px; color: var(--depth-color);
+    letter-spacing: 3px; text-transform: uppercase; transition: color var(--transition-speed) ease;
   }
-
   @media (max-width: 600px) {
     :root { --cell-size: 30px; }
     .game-container { padding: 14px; }
@@ -595,7 +315,6 @@
   <div class="wave wave-2"></div>
   <div class="wave wave-3"></div>
 </div>
-
 <div class="bubbles" id="bubbles"></div>
 <div class="creatures" id="creatures"></div>
 
@@ -604,7 +323,6 @@
     <div class="title">TIDAL SWEEP</div>
     <div class="subtitle" id="subtitleText">navigate the shallows</div>
   </div>
-
   <div class="difficulty-bar">
     <button class="diff-btn active" data-diff="easy">
       <span class="diff-label">Shallows</span>
@@ -619,7 +337,6 @@
       <span class="diff-info">16×30 · 99 jelly</span>
     </button>
   </div>
-
   <div class="status-bar">
     <div class="stat jelly-count">
       <span class="stat-icon">🪼</span>
@@ -631,11 +348,9 @@
       <span id="timerDisplay">000</span>
     </div>
   </div>
-
   <div class="grid-wrapper">
     <div class="grid" id="grid"></div>
   </div>
-
   <div class="footer">
     left click — reveal &nbsp;|&nbsp; right click — <span>flag</span>
     <div class="depth-label" id="depthLabel">depth: shoreline</div>
@@ -652,145 +367,196 @@
 </div>
 
 <script>
-// === BUBBLES ===
 const bubblesEl = document.getElementById('bubbles');
 for (let i = 0; i < 20; i++) {
   const b = document.createElement('div');
   b.className = 'bubble';
   const size = 4 + Math.random() * 16;
-  b.style.width = size + 'px';
-  b.style.height = size + 'px';
+  b.style.width = size + 'px'; b.style.height = size + 'px';
   b.style.left = Math.random() * 100 + '%';
   b.style.animationDuration = (8 + Math.random() * 14) + 's';
   b.style.animationDelay = (Math.random() * 10) + 's';
   bubblesEl.appendChild(b);
 }
 
-// === CREATURES ===
+// === CREATURE SVGs ===
 const creaturesEl = document.getElementById('creatures');
 let creatureInterval = null;
 
 function createFishSVG() {
-  // Colorful tropical fish
-  const colors = [
-    ['#FFB347','#FF6B35'],
-    ['#4ECDC4','#2AB7A9'],
-    ['#FF6B8A','#EE4466'],
-    ['#95E1D3','#5CC8B0'],
-    ['#F8E16C','#E8C84A'],
-    ['#A8D8EA','#6BB5D0'],
-  ];
+  const colors = [['#FFB347','#FF6B35'],['#4ECDC4','#2AB7A9'],['#FF6B8A','#EE4466'],['#95E1D3','#5CC8B0'],['#F8E16C','#E8C84A'],['#A8D8EA','#6BB5D0']];
   const [body, fin] = colors[Math.floor(Math.random() * colors.length)];
   const size = 30 + Math.random() * 25;
-  const w = size * 1.8;
-  const h = size;
-
+  const w = size * 1.8, h = size;
   const svg = `<svg width="${w}" height="${h}" viewBox="0 0 54 30" xmlns="http://www.w3.org/2000/svg">
-    <g>
-      <!-- Tail -->
-      <path d="M4 15 L0 5 L10 15 L0 25 Z" fill="${fin}" opacity="0.8"/>
-      <!-- Body -->
-      <ellipse cx="28" cy="15" rx="18" ry="12" fill="${body}"/>
-      <!-- Stripe -->
-      <ellipse cx="28" cy="15" rx="18" ry="12" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="1.5"/>
-      <path d="M24 4 Q26 15 24 26" stroke="rgba(255,255,255,0.3)" stroke-width="1.5" fill="none"/>
-      <!-- Dorsal fin -->
-      <path d="M22 4 Q28 -2 34 4" fill="${fin}" opacity="0.7"/>
-      <!-- Eye -->
-      <circle cx="36" cy="12" r="3" fill="white"/>
-      <circle cx="37" cy="11.5" r="1.5" fill="#222"/>
-      <!-- Mouth -->
-      <path d="M44 15 Q46 16 44 17" stroke="#333" stroke-width="0.8" fill="none"/>
-    </g>
+    <path d="M4 15 L0 5 L10 15 L0 25 Z" fill="${fin}" opacity="0.8"/>
+    <ellipse cx="28" cy="15" rx="18" ry="12" fill="${body}"/>
+    <ellipse cx="28" cy="15" rx="18" ry="12" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="1.5"/>
+    <path d="M24 4 Q26 15 24 26" stroke="rgba(255,255,255,0.3)" stroke-width="1.5" fill="none"/>
+    <path d="M22 4 Q28 -2 34 4" fill="${fin}" opacity="0.7"/>
+    <circle cx="36" cy="12" r="3" fill="white"/><circle cx="37" cy="11.5" r="1.5" fill="#222"/>
+    <path d="M44 15 Q46 16 44 17" stroke="#333" stroke-width="0.8" fill="none"/>
   </svg>`;
   return { svg, w, h };
 }
 
 function createSharkSVG() {
-   const size = 80 + Math.random() * 40;
-  const w = size * 2;
-  const h = size;
-
+  const size = 80 + Math.random() * 40;
+  const w = size * 2, h = size;
   const svg = `<svg width="${w}" height="${h}" viewBox="0 0 120 50" xmlns="http://www.w3.org/2000/svg">
-    <g>
-      <!-- Tail -->
-      <path d="M8 25 L0 8 L16 22 Z" fill="#3a5068" opacity="0.9"/>
-      <path d="M8 25 L2 40 L16 28 Z" fill="#3a5068" opacity="0.7"/>
-      <!-- Body -->
-      <ellipse cx="60" cy="26" rx="46" ry="16" fill="#4a6880"/>
-      <!-- Belly -->
-      <ellipse cx="60" cy="32" rx="38" ry="9" fill="#6888a0" opacity="0.5"/>
-      <!-- Dorsal fin -->
-      <path d="M50 10 L58 -4 L64 10" fill="#3a5068"/>
-      <!-- Pectoral fins -->
-      <path d="M70 38 L82 48 L78 36" fill="#3a5068" opacity="0.8"/>
-      <path d="M45 38 L38 46 L48 37" fill="#3a5068" opacity="0.6"/>
-      <!-- Eye -->
-      <circle cx="88" cy="22" r="3.5" fill="#1a2a38"/>
-      <circle cx="89" cy="21.5" r="1.2" fill="#4a8aaa"/>
-      <!-- Gills -->
-      <line x1="78" y1="20" x2="78" y2="30" stroke="#3a5068" stroke-width="1" opacity="0.6"/>
-      <line x1="82" y1="20" x2="82" y2="29" stroke="#3a5068" stroke-width="1" opacity="0.5"/>
-      <line x1="86" y1="21" x2="86" y2="28" stroke="#3a5068" stroke-width="1" opacity="0.4"/>
-      <!-- Mouth -->
-      <path d="M98 28 Q106 30 100 33" stroke="#2a3a48" stroke-width="1.2" fill="none"/>
-      <!-- Teeth hint -->
-      <path d="M99 29 L100 31 L101 29 L102 31 L103 29" stroke="rgba(255,255,255,0.3)" stroke-width="0.6" fill="none"/>
-    </g>
+    <path d="M8 25 L0 8 L16 22 Z" fill="#3a5068" opacity="0.9"/>
+    <path d="M8 25 L2 40 L16 28 Z" fill="#3a5068" opacity="0.7"/>
+    <ellipse cx="60" cy="26" rx="46" ry="16" fill="#4a6880"/>
+    <ellipse cx="60" cy="32" rx="38" ry="9" fill="#6888a0" opacity="0.5"/>
+    <path d="M50 10 L58 -4 L64 10" fill="#3a5068"/>
+    <path d="M70 38 L82 48 L78 36" fill="#3a5068" opacity="0.8"/>
+    <path d="M45 38 L38 46 L48 37" fill="#3a5068" opacity="0.6"/>
+    <circle cx="88" cy="22" r="3.5" fill="#1a2a38"/><circle cx="89" cy="21.5" r="1.2" fill="#4a8aaa"/>
+    <line x1="78" y1="20" x2="78" y2="30" stroke="#3a5068" stroke-width="1" opacity="0.6"/>
+    <line x1="82" y1="20" x2="82" y2="29" stroke="#3a5068" stroke-width="1" opacity="0.5"/>
+    <line x1="86" y1="21" x2="86" y2="28" stroke="#3a5068" stroke-width="1" opacity="0.4"/>
+    <path d="M98 28 Q106 30 100 33" stroke="#2a3a48" stroke-width="1.2" fill="none"/>
+    <path d="M99 29 L100 31 L101 29 L102 31 L103 29" stroke="rgba(255,255,255,0.3)" stroke-width="0.6" fill="none"/>
   </svg>`;
   return { svg, w, h };
 }
- 
-function createTentacleSVG() {
-  const w = 60 + Math.random() * 40;
-  const h = 400;
-  const hue = Math.random() > 0.5 ? '280' : '320';
-  const color1 = `hsla(${hue}, 40%, 25%, 0.6)`;
-  const color2 = `hsla(${hue}, 50%, 15%, 0.8)`;
-  const sucker = `hsla(${hue}, 30%, 35%, 0.4)`;
 
-  // Generate wavy tentacle path
-  const midX = w / 2;
-  let d = `M${midX} ${h}`;
-  const segments = 12;
-  for (let i = 0; i < segments; i++) {
-    const y = h - (h / segments) * (i + 1);
-    const sway = Math.sin(i * 0.8) * (15 + Math.random() * 10);
-    const cpY = y + (h / segments) * 0.5;
-    d += ` Q${midX + sway * 1.5} ${cpY} ${midX + sway} ${y}`;
-  }
-
-  // Taper width
-  const svg = `<svg width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" xmlns="http://www.w3.org/2000/svg">
+function createAnglerFishSVG() {
+  // Bulky angler fish facing right, with bioluminescent lure on stalk
+  const scale = 0.9 + Math.random() * 0.4;
+  const w = Math.round(180 * scale), h = Math.round(140 * scale);
+  const id = 'ag' + Math.random().toString(36).slice(2,6);
+  const svg = `<svg width="${w}" height="${h}" viewBox="0 0 180 140" xmlns="http://www.w3.org/2000/svg">
     <defs>
-      <linearGradient id="tentGrad" x1="0" y1="1" x2="0" y2="0">
-        <stop offset="0%" stop-color="${color2}"/>
-        <stop offset="100%" stop-color="${color1}"/>
+      <radialGradient id="${id}glow">
+        <stop offset="0%" stop-color="rgba(160,220,255,0.95)"/>
+        <stop offset="40%" stop-color="rgba(100,180,255,0.5)"/>
+        <stop offset="100%" stop-color="rgba(60,120,200,0)"/>
+      </radialGradient>
+      <radialGradient id="${id}body" cx="55%" cy="50%">
+        <stop offset="0%" stop-color="#3868a0"/>
+        <stop offset="60%" stop-color="#1e3860"/>
+        <stop offset="100%" stop-color="#0e1830"/>
+      </radialGradient>
+    </defs>
+    <!-- Lure stalk -->
+    <path d="M120 72 Q125 40 132 25 Q138 12 142 8" stroke="#2a4a70" stroke-width="2" fill="none" opacity="0.7"/>
+    <!-- Lure glow -->
+    <circle cx="143" cy="7" r="18" fill="url(#${id}glow)">
+      <animate attributeName="r" values="16;20;16" dur="2s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.8;1;0.8" dur="2s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="143" cy="7" r="5" fill="rgba(200,240,255,0.95)">
+      <animate attributeName="r" values="4;6;4" dur="2s" repeatCount="indefinite"/>
+    </circle>
+    <!-- Tail fin -->
+    <path d="M18 75 L2 55 L12 72 L2 95 L18 80 Z" fill="#1a3058" opacity="0.8"/>
+    <!-- Body - large round -->
+    <ellipse cx="80" cy="80" rx="60" ry="48" fill="url(#${id}body)"/>
+    <!-- Belly shading -->
+    <ellipse cx="82" cy="95" rx="45" ry="28" fill="#2a5080" opacity="0.3"/>
+    <!-- Top bumps/ridges -->
+    <path d="M50 38 Q55 33 60 38" stroke="#2a4a78" stroke-width="1.5" fill="none" opacity="0.5"/>
+    <path d="M65 34 Q70 28 76 34" stroke="#2a4a78" stroke-width="1.5" fill="none" opacity="0.5"/>
+    <path d="M80 36 Q86 30 92 36" stroke="#2a4a78" stroke-width="1.5" fill="none" opacity="0.4"/>
+    <!-- Dorsal fin -->
+    <path d="M55 35 Q65 18 78 35" fill="#1a3058" opacity="0.6"/>
+    <!-- Bottom fin -->
+    <path d="M60 120 Q70 135 80 120" fill="#1a3058" opacity="0.5"/>
+    <!-- Pectoral fin -->
+    <path d="M95 105 Q110 122 105 100" fill="#1a3058" opacity="0.6"/>
+    <!-- Mouth - BIG gaping jaw -->
+    <path d="M120 68 Q140 65 148 72 Q140 80 120 92 Z" fill="#0a1020"/>
+    <!-- Teeth top row -->
+    <path d="M120 70 L124 78 L128 70 L132 80 L136 69 L140 79 L144 70 L147 73" stroke="#c8d8e8" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+    <!-- Teeth bottom row -->
+    <path d="M120 90 L124 82 L128 90 L132 81 L136 90 L140 82 L144 88 L147 78" stroke="#c8d8e8" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+    <!-- Eye - large angry -->
+    <circle cx="108" cy="62" r="10" fill="#0a1020"/>
+    <circle cx="108" cy="62" r="7" fill="#1a3050"/>
+    <circle cx="110" cy="60" r="4" fill="#60a8d0"/>
+    <circle cx="112" cy="58" r="1.5" fill="#c0e8ff"/>
+    <!-- Small bioluminescent spots on body -->
+    <circle cx="60" cy="70" r="1.5" fill="rgba(100,180,255,0.4)">
+      <animate attributeName="opacity" values="0.2;0.6;0.2" dur="3s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="75" cy="95" r="1.2" fill="rgba(100,180,255,0.3)">
+      <animate attributeName="opacity" values="0.3;0.7;0.3" dur="2.5s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="50" cy="85" r="1" fill="rgba(100,180,255,0.35)">
+      <animate attributeName="opacity" values="0.2;0.5;0.2" dur="4s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="90" cy="100" r="1.3" fill="rgba(100,180,255,0.3)">
+      <animate attributeName="opacity" values="0.1;0.5;0.1" dur="3.5s" repeatCount="indefinite"/>
+    </circle>
+  </svg>`;
+  return { svg, w, h };
+}
+
+function createViperFishSVG() {
+  // Long sleek viperfish facing left, with photophore lantern and huge fangs
+  const scale = 0.85 + Math.random() * 0.35;
+  const w = Math.round(220 * scale), h = Math.round(60 * scale);
+  const id = 'vp' + Math.random().toString(36).slice(2,6);
+  const svg = `<svg width="${w}" height="${h}" viewBox="0 0 220 60" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <radialGradient id="${id}glow">
+        <stop offset="0%" stop-color="rgba(160,220,255,0.9)"/>
+        <stop offset="50%" stop-color="rgba(100,180,255,0.4)"/>
+        <stop offset="100%" stop-color="rgba(60,120,200,0)"/>
+      </radialGradient>
+      <linearGradient id="${id}body" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stop-color="#1a2840"/>
+        <stop offset="30%" stop-color="#2a4468"/>
+        <stop offset="70%" stop-color="#3a5878"/>
+        <stop offset="100%" stop-color="#2a3a50"/>
       </linearGradient>
     </defs>
-    <!-- Shadow tentacle -->
-    <path d="${d}" stroke="url(#tentGrad)" stroke-width="${w * 0.5}" fill="none" stroke-linecap="round" opacity="0.5"/>
-    <!-- Main tentacle -->
-    <path d="${d}" stroke="url(#tentGrad)" stroke-width="${w * 0.35}" fill="none" stroke-linecap="round"/>
-    <!-- Highlight -->
-    <path d="${d}" stroke="rgba(200,150,255,0.08)" stroke-width="${w * 0.12}" fill="none" stroke-linecap="round"/>
-    <!-- Suckers -->
-    ${Array.from({length: 8}, (_, i) => {
-      const frac = (i + 1) / 10;
-      const sy = h - frac * h;
-      const sx = midX + Math.sin((i+1) * 0.8) * (15 + 5) * 0.6;
-      const sr = 3 + (1 - frac) * 4;
-      return `<circle cx="${sx}" cy="${sy}" r="${sr}" fill="${sucker}" opacity="${0.3 + frac * 0.3}"/>`;
-    }).join('')}
-    <!-- Bioluminescent glow spots -->
-    ${Array.from({length: 4}, (_, i) => {
-      const frac = (i + 1) / 6;
-      const gy = h - frac * h;
-      const gx = midX + Math.sin((i+1) * 0.8) * 12;
-      return `<circle cx="${gx}" cy="${gy}" r="2" fill="rgba(160, 200, 255, 0.4)" opacity="${0.3 + Math.random() * 0.4}">
-        <animate attributeName="opacity" values="0.2;0.6;0.2" dur="${2 + Math.random() * 2}s" repeatCount="indefinite"/>
+    <!-- Tail fin -->
+    <path d="M205 30 L220 18 L212 30 L220 42 Z" fill="#1a2840" opacity="0.7"/>
+    <!-- Long body -->
+    <ellipse cx="115" cy="30" rx="95" ry="14" fill="url(#${id}body)"/>
+    <!-- Belly highlight -->
+    <ellipse cx="110" cy="36" rx="70" ry="6" fill="#4a6880" opacity="0.25"/>
+    <!-- Dorsal ridge -->
+    <path d="M60 16 L70 8 L80 16" fill="#1a2840" opacity="0.5"/>
+    <path d="M85 16 L92 10 L100 16" fill="#1a2840" opacity="0.4"/>
+    <!-- Lateral line of photophores -->
+    ${Array.from({length: 10}, (_, i) => {
+      const x = 40 + i * 16;
+      const delay = (i * 0.3).toFixed(1);
+      return `<circle cx="${x}" cy="32" r="1.2" fill="rgba(120,200,255,0.5)">
+        <animate attributeName="opacity" values="0.2;0.7;0.2" dur="2s" begin="${delay}s" repeatCount="indefinite"/>
       </circle>`;
     }).join('')}
+    <!-- Head - slightly larger -->
+    <ellipse cx="28" cy="30" rx="22" ry="16" fill="#2a4468"/>
+    <!-- Lantern/barbel hanging from chin -->
+    <path d="M18 40 Q14 50 10 54" stroke="#2a4468" stroke-width="1.5" fill="none" opacity="0.6"/>
+    <circle cx="9" cy="55" r="8" fill="url(#${id}glow)">
+      <animate attributeName="r" values="7;10;7" dur="2.5s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="9" cy="55" r="3" fill="rgba(200,240,255,0.9)">
+      <animate attributeName="r" values="2.5;4;2.5" dur="2.5s" repeatCount="indefinite"/>
+    </circle>
+    <!-- Eye -->
+    <circle cx="20" cy="26" r="5" fill="#0a1020"/>
+    <circle cx="20" cy="26" r="3.5" fill="#1a3050"/>
+    <circle cx="19" cy="25" r="2" fill="#50a0c8"/>
+    <circle cx="18" cy="24" r="0.8" fill="#c0e8ff"/>
+    <!-- Mouth opening -->
+    <path d="M8 24 Q2 30 8 36" stroke="#0a1020" stroke-width="2" fill="#060e18"/>
+    <!-- HUGE fangs - top -->
+    <line x1="10" y1="24" x2="6" y2="14" stroke="#c8dce8" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="14" y1="24" x2="11" y2="16" stroke="#c8dce8" stroke-width="1.5" stroke-linecap="round"/>
+    <line x1="7" y1="25" x2="2" y2="17" stroke="#c8dce8" stroke-width="1.3" stroke-linecap="round"/>
+    <!-- HUGE fangs - bottom -->
+    <line x1="10" y1="36" x2="6" y2="46" stroke="#c8dce8" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="14" y1="36" x2="11" y2="44" stroke="#c8dce8" stroke-width="1.5" stroke-linecap="round"/>
+    <line x1="7" y1="35" x2="2" y2="43" stroke="#c8dce8" stroke-width="1.3" stroke-linecap="round"/>
+    <!-- Gill slits -->
+    <line x1="42" y1="24" x2="42" y2="34" stroke="#1a2840" stroke-width="0.8" opacity="0.5"/>
+    <line x1="46" y1="24" x2="46" y2="33" stroke="#1a2840" stroke-width="0.8" opacity="0.4"/>
   </svg>`;
   return { svg, w, h };
 }
@@ -800,56 +566,52 @@ function spawnCreature(diff) {
   el.className = 'creature';
 
   if (diff === 'easy') {
-    // Tropical fish swimming left or right
-    const { svg, w, h } = createFishSVG();
+    const { svg } = createFishSVG();
     const goRight = Math.random() > 0.5;
     el.classList.add('fish');
-    el.innerHTML = `<div class="fish-body" style="${goRight ? '' : 'transform: scaleX(-1);'}">${svg}</div>`;
+    el.innerHTML = `<div style="${goRight ? '' : 'transform:scaleX(-1);'}">${svg}</div>`;
     el.style.top = (15 + Math.random() * 70) + 'vh';
     el.style.animation = `${goRight ? 'swimRight' : 'swimLeft'} ${10 + Math.random() * 8}s linear forwards`;
 
   } else if (diff === 'medium') {
-    // Shark — slower, more menacing
-    const { svg, w, h } = createSharkSVG();
+    const { svg } = createSharkSVG();
     const goRight = Math.random() > 0.5;
     el.classList.add('shark');
-    el.innerHTML = `<div style="${goRight ? '' : 'transform: scaleX(-1);'}">${svg}</div>`;
+    el.innerHTML = `<div style="${goRight ? '' : 'transform:scaleX(-1);'}">${svg}</div>`;
     el.style.top = (10 + Math.random() * 65) + 'vh';
     el.style.animation = `${goRight ? 'swimRight' : 'swimLeft'} ${14 + Math.random() * 10}s linear forwards`;
 
   } else {
-    // Kraken tentacle rising from bottom
-    const { svg, w, h } = createTentacleSVG();
-    el.classList.add('tentacle');
-    el.innerHTML = svg;
-    el.style.left = (10 + Math.random() * 80) + 'vw';
-    el.style.bottom = '0';
-    el.style.animation = `tentacleRise ${16 + Math.random() * 10}s ease-in-out forwards`;
+    // Abyss: alternate between angler fish (from left) and viperfish (from right)
+    const isAngler = Math.random() > 0.4;
+    if (isAngler) {
+      const { svg } = createAnglerFishSVG();
+      el.classList.add('angler');
+      el.innerHTML = svg; // faces right by default
+      el.style.top = (15 + Math.random() * 60) + 'vh';
+      el.style.animation = `swimRightSlow ${18 + Math.random() * 10}s linear forwards`;
+    } else {
+      const { svg } = createViperFishSVG();
+      el.classList.add('viper');
+      el.innerHTML = svg; // faces left by default
+      el.style.top = (10 + Math.random() * 65) + 'vh';
+      el.style.animation = `swimLeftSlow ${16 + Math.random() * 10}s linear forwards`;
+    }
   }
 
   creaturesEl.appendChild(el);
-
-  // Clean up after animation
   el.addEventListener('animationend', () => el.remove());
 }
 
 function startCreatureSpawner(diff) {
   clearInterval(creatureInterval);
-  // Clear existing creatures
   creaturesEl.innerHTML = '';
-
-  const intervals = { easy: [6000, 12000], medium: [10000, 18000], hard: [12000, 22000] };
+  const intervals = { easy: [6000,12000], medium: [10000,18000], hard: [8000,16000] };
   const [min, max] = intervals[diff];
-
   function scheduleNext() {
     const delay = min + Math.random() * (max - min);
-    creatureInterval = setTimeout(() => {
-      spawnCreature(diff);
-      scheduleNext();
-    }, delay);
+    creatureInterval = setTimeout(() => { spawnCreature(diff); scheduleNext(); }, delay);
   }
-
-  // Spawn first one after a short delay
   setTimeout(() => spawnCreature(diff), 2000 + Math.random() * 3000);
   scheduleNext();
 }
@@ -860,22 +622,14 @@ const DIFFICULTIES = {
   medium: { rows: 16, cols: 16, mines: 40 },
   hard:   { rows: 16, cols: 30, mines: 99 },
 };
-
 const THEME_TEXT = {
   easy:   { subtitle: 'navigate the shallows',   depth: 'depth: shoreline',     name: 'Shallows' },
   medium: { subtitle: 'descend to the deep sea', depth: 'depth: 2,000 meters',  name: 'Deep Sea' },
   hard:   { subtitle: 'survive the abyss',       depth: 'depth: 6,000 meters',  name: 'The Abyss' },
 };
 
-let difficulty = 'easy';
-let rows, cols, totalMines;
-let board = [];
-let gameStarted = false;
-let gameOver = false;
-let timer = 0;
-let timerInterval = null;
-let flagsPlaced = 0;
-let cellsRevealed = 0;
+let difficulty = 'easy', rows, cols, totalMines, board = [];
+let gameStarted = false, gameOver = false, timer = 0, timerInterval = null, flagsPlaced = 0, cellsRevealed = 0;
 
 const gridEl = document.getElementById('grid');
 const mineDisplay = document.getElementById('mineDisplay');
@@ -905,190 +659,110 @@ document.querySelectorAll('.diff-btn').forEach(btn => {
     initGame();
   });
 });
-
 resetBtn.addEventListener('click', initGame);
-overlayBtn.addEventListener('click', () => {
-  overlay.classList.remove('show');
-  initGame();
-});
+overlayBtn.addEventListener('click', () => { overlay.classList.remove('show'); initGame(); });
 
 function initGame() {
   const cfg = DIFFICULTIES[difficulty];
-  rows = cfg.rows;
-  cols = cfg.cols;
-  totalMines = cfg.mines;
-
-  board = [];
-  gameStarted = false;
-  gameOver = false;
-  flagsPlaced = 0;
-  cellsRevealed = 0;
-  timer = 0;
-  clearInterval(timerInterval);
-  timerInterval = null;
-
-  mineDisplay.textContent = totalMines;
-  timerDisplay.textContent = '000';
+  rows = cfg.rows; cols = cfg.cols; totalMines = cfg.mines;
+  board = []; gameStarted = false; gameOver = false; flagsPlaced = 0; cellsRevealed = 0;
+  timer = 0; clearInterval(timerInterval); timerInterval = null;
+  mineDisplay.textContent = totalMines; timerDisplay.textContent = '000';
   overlay.classList.remove('show');
-
-  for (let r = 0; r < rows; r++) {
-    board[r] = [];
-    for (let c = 0; c < cols; c++) {
-      board[r][c] = { mine: false, revealed: false, flagged: false, adjacent: 0 };
-    }
-  }
+  for (let r = 0; r < rows; r++) { board[r] = []; for (let c = 0; c < cols; c++) board[r][c] = { mine:false, revealed:false, flagged:false, adjacent:0 }; }
   renderGrid();
 }
 
 function placeMines(safeR, safeC) {
   const safe = new Set();
-  for (let dr = -1; dr <= 1; dr++)
-    for (let dc = -1; dc <= 1; dc++)
-      safe.add(`${safeR + dr},${safeC + dc}`);
-
+  for (let dr=-1;dr<=1;dr++) for (let dc=-1;dc<=1;dc++) safe.add(`${safeR+dr},${safeC+dc}`);
   let placed = 0;
   while (placed < totalMines) {
-    const r = Math.floor(Math.random() * rows);
-    const c = Math.floor(Math.random() * cols);
-    if (!board[r][c].mine && !safe.has(`${r},${c}`)) {
-      board[r][c].mine = true;
-      placed++;
-    }
+    const r = Math.floor(Math.random()*rows), c = Math.floor(Math.random()*cols);
+    if (!board[r][c].mine && !safe.has(`${r},${c}`)) { board[r][c].mine = true; placed++; }
   }
-
-  for (let r = 0; r < rows; r++)
-    for (let c = 0; c < cols; c++) {
-      if (board[r][c].mine) continue;
-      let count = 0;
-      forNeighbors(r, c, (nr, nc) => { if (board[nr][nc].mine) count++; });
-      board[r][c].adjacent = count;
-    }
+  for (let r=0;r<rows;r++) for (let c=0;c<cols;c++) {
+    if (board[r][c].mine) continue;
+    let count = 0; forNeighbors(r,c,(nr,nc)=>{if(board[nr][nc].mine)count++;}); board[r][c].adjacent = count;
+  }
 }
 
-function forNeighbors(r, c, fn) {
-  for (let dr = -1; dr <= 1; dr++)
-    for (let dc = -1; dc <= 1; dc++) {
-      if (dr === 0 && dc === 0) continue;
-      const nr = r + dr, nc = c + dc;
-      if (nr >= 0 && nr < rows && nc >= 0 && nc < cols) fn(nr, nc);
-    }
+function forNeighbors(r,c,fn) {
+  for (let dr=-1;dr<=1;dr++) for (let dc=-1;dc<=1;dc++) {
+    if(dr===0&&dc===0) continue;
+    const nr=r+dr, nc=c+dc;
+    if(nr>=0&&nr<rows&&nc>=0&&nc<cols) fn(nr,nc);
+  }
 }
 
 function renderGrid() {
   gridEl.innerHTML = '';
   gridEl.style.gridTemplateColumns = `repeat(${cols}, var(--cell-size))`;
-
-  for (let r = 0; r < rows; r++)
-    for (let c = 0; c < cols; c++) {
-      const cell = document.createElement('div');
-      cell.className = 'cell';
-      cell.addEventListener('click', () => handleClick(r, c));
-      cell.addEventListener('contextmenu', (e) => { e.preventDefault(); handleRightClick(r, c); });
-
-      let pressTimer;
-      cell.addEventListener('touchstart', (e) => {
-        pressTimer = setTimeout(() => { e.preventDefault(); handleRightClick(r, c); }, 400);
-      }, { passive: false });
-      cell.addEventListener('touchend', () => clearTimeout(pressTimer));
-      cell.addEventListener('touchmove', () => clearTimeout(pressTimer));
-
-      gridEl.appendChild(cell);
-    }
-}
-
-function getCell(r, c) { return gridEl.children[r * cols + c]; }
-
-function handleClick(r, c) {
-  if (gameOver) return;
-  const data = board[r][c];
-  if (data.flagged || data.revealed) return;
-  if (!gameStarted) { gameStarted = true; placeMines(r, c); startTimer(); }
-  if (data.mine) { triggerLoss(r, c); return; }
-  reveal(r, c);
-  checkWin();
-}
-
-function handleRightClick(r, c) {
-  if (gameOver) return;
-  const data = board[r][c];
-  if (data.revealed) return;
-  if (!gameStarted) { gameStarted = true; placeMines(r, c); startTimer(); }
-  data.flagged = !data.flagged;
-  flagsPlaced += data.flagged ? 1 : -1;
-  getCell(r, c).classList.toggle('flagged', data.flagged);
-  mineDisplay.textContent = totalMines - flagsPlaced;
-  checkWin();
-}
-
-function reveal(r, c) {
-  const data = board[r][c];
-  if (data.revealed || data.flagged) return;
-  data.revealed = true;
-  cellsRevealed++;
-  const cell = getCell(r, c);
-  cell.classList.add('revealed');
-  if (data.adjacent > 0) {
-    cell.classList.add(`n${data.adjacent}`);
-    cell.textContent = data.adjacent;
-  } else {
-    cell.classList.add('empty');
-    forNeighbors(r, c, (nr, nc) => reveal(nr, nc));
+  for (let r=0;r<rows;r++) for (let c=0;c<cols;c++) {
+    const cell = document.createElement('div');
+    cell.className = 'cell';
+    cell.addEventListener('click', ()=>handleClick(r,c));
+    cell.addEventListener('contextmenu', e=>{e.preventDefault();handleRightClick(r,c);});
+    let pt; cell.addEventListener('touchstart', e=>{pt=setTimeout(()=>{e.preventDefault();handleRightClick(r,c);},400);},{passive:false});
+    cell.addEventListener('touchend',()=>clearTimeout(pt)); cell.addEventListener('touchmove',()=>clearTimeout(pt));
+    gridEl.appendChild(cell);
   }
 }
 
-function triggerLoss(hitR, hitC) {
-  gameOver = true;
-  clearInterval(timerInterval);
-  for (let r = 0; r < rows; r++)
-    for (let c = 0; c < cols; c++) {
-      if (board[r][c].mine) {
-        const cell = getCell(r, c);
-        cell.classList.add(r === hitR && c === hitC ? 'jelly-hit' : 'jelly-shown');
-        cell.innerHTML = '<span class="jelly-icon">🪼</span>';
-      }
-    }
-  setTimeout(() => {
-    overlayIcon.textContent = '🪼';
-    overlayTitle.textContent = 'STUNG!';
-    overlayTitle.className = 'overlay-title lose';
-    overlayStats.textContent = `Survived ${timer}s · ${cellsRevealed} tiles explored`;
+function getCell(r,c){return gridEl.children[r*cols+c];}
+
+function handleClick(r,c) {
+  if(gameOver) return; const data=board[r][c]; if(data.flagged||data.revealed) return;
+  if(!gameStarted){gameStarted=true;placeMines(r,c);startTimer();}
+  if(data.mine){triggerLoss(r,c);return;} reveal(r,c); checkWin();
+}
+function handleRightClick(r,c) {
+  if(gameOver) return; const data=board[r][c]; if(data.revealed) return;
+  if(!gameStarted){gameStarted=true;placeMines(r,c);startTimer();}
+  data.flagged=!data.flagged; flagsPlaced+=data.flagged?1:-1;
+  getCell(r,c).classList.toggle('flagged',data.flagged);
+  mineDisplay.textContent=totalMines-flagsPlaced; checkWin();
+}
+function reveal(r,c) {
+  const data=board[r][c]; if(data.revealed||data.flagged) return;
+  data.revealed=true; cellsRevealed++; const cell=getCell(r,c); cell.classList.add('revealed');
+  if(data.adjacent>0){cell.classList.add(`n${data.adjacent}`);cell.textContent=data.adjacent;}
+  else{cell.classList.add('empty');forNeighbors(r,c,(nr,nc)=>reveal(nr,nc));}
+}
+function triggerLoss(hitR,hitC) {
+  gameOver=true; clearInterval(timerInterval);
+  for(let r=0;r<rows;r++) for(let c=0;c<cols;c++) if(board[r][c].mine){
+    const cell=getCell(r,c);
+    cell.classList.add(r===hitR&&c===hitC?'jelly-hit':'jelly-shown');
+    cell.innerHTML='<span class="jelly-icon">🪼</span>';
+  }
+  setTimeout(()=>{
+    overlayIcon.textContent='🪼'; overlayTitle.textContent='STUNG!';
+    overlayTitle.className='overlay-title lose';
+    overlayStats.textContent=`Survived ${timer}s · ${cellsRevealed} tiles explored`;
     overlay.classList.add('show');
-  }, 600);
+  },600);
 }
-
 function checkWin() {
-  if (cellsRevealed === rows * cols - totalMines) {
-    gameOver = true;
-    clearInterval(timerInterval);
-    for (let r = 0; r < rows; r++)
-      for (let c = 0; c < cols; c++)
-        if (board[r][c].mine && !board[r][c].flagged) {
-          board[r][c].flagged = true;
-          getCell(r, c).classList.add('flagged');
-        }
-    mineDisplay.textContent = '0';
-    setTimeout(() => {
-      overlayIcon.textContent = '🐚';
-      overlayTitle.textContent = 'OCEAN CLEARED!';
-      overlayTitle.className = 'overlay-title win';
-      overlayStats.textContent = `Cleared in ${timer}s · ${THEME_TEXT[difficulty].name}`;
+  if(cellsRevealed===rows*cols-totalMines){
+    gameOver=true; clearInterval(timerInterval);
+    for(let r=0;r<rows;r++) for(let c=0;c<cols;c++)
+      if(board[r][c].mine&&!board[r][c].flagged){board[r][c].flagged=true;getCell(r,c).classList.add('flagged');}
+    mineDisplay.textContent='0';
+    setTimeout(()=>{
+      overlayIcon.textContent='🐚'; overlayTitle.textContent='OCEAN CLEARED!';
+      overlayTitle.className='overlay-title win';
+      overlayStats.textContent=`Cleared in ${timer}s · ${THEME_TEXT[difficulty].name}`;
       overlay.classList.add('show');
-    }, 400);
+    },400);
   }
 }
-
 function startTimer() {
-  timer = 0;
-  clearInterval(timerInterval);
-  timerInterval = setInterval(() => {
-    timer++;
-    timerDisplay.textContent = String(timer).padStart(3, '0');
-    if (timer >= 999) clearInterval(timerInterval);
-  }, 1000);
+  timer=0; clearInterval(timerInterval);
+  timerInterval=setInterval(()=>{timer++;timerDisplay.textContent=String(timer).padStart(3,'0');if(timer>=999)clearInterval(timerInterval);},1000);
 }
 
-applyTheme('easy');
-initGame();
+applyTheme('easy'); initGame();
 </script>
 </body>
 </html>
